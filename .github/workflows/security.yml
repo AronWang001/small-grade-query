@@ -1,0 +1,63 @@
+name: Security Checks
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: sodium, pdo_mysql, mbstring, zip
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Composer Audit
+        run: composer audit
+
+      - name: PHP Syntax Check
+        run: find . -path ./vendor -prune -o -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Scan for sensitive files
+        run: |
+          set -e
+          # Check for .env
+          if [ -f .env ]; then echo "ERROR: .env found in repository"; exit 1; fi
+          # Check for backup files
+          BACKUPS=$(find . -not -path "./vendor/*" -not -path "./.git/*" \( -name "*.bak" -o -name "*.old" -o -name "*.orig" \) 2>/dev/null)
+          if [ -n "$BACKUPS" ]; then echo "ERROR: Backup files found: $BACKUPS"; exit 1; fi
+          # Check for data files
+          DATA_FILES=$(find ./storage -type f -not -name ".gitkeep" -not -name ".gitignore" 2>/dev/null)
+          if [ -n "$DATA_FILES" ]; then echo "ERROR: Data files in storage: $DATA_FILES"; exit 1; fi
+          # Check for Excel files
+          EXCEL=$(find . -not -path "./vendor/*" \( -name "*.xlsx" -o -name "*.xls" \) 2>/dev/null)
+          if [ -n "$EXCEL" ]; then echo "ERROR: Excel files found: $EXCEL"; exit 1; fi
+          # Check for log files
+          LOGS=$(find . -not -path "./vendor/*" -not -path "./storage/logs/.gitkeep" -name "*.log" 2>/dev/null)
+          if [ -n "$LOGS" ]; then echo "ERROR: Log files found: $LOGS"; exit 1; fi
+          # Check for SQL dumps
+          SQLS=$(find . -not -path "./vendor/*" -not -path "./database/*" -name "*.sql" 2>/dev/null)
+          if [ -n "$SQLS" ]; then echo "ERROR: SQL files outside database/: $SQLS"; exit 1; fi
+
+      - name: Scan for PII patterns
+        run: |
+          # Chinese ID card pattern (18 digits)
+          ID_CARDS=$(grep -rP '[1-9]\d{5}(19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]' --include="*.php" --include="*.json" --include="*.md" . 2>/dev/null )
+          if [ -n "$ID_CARDS" ]; then echo "ERROR: Possible ID card numbers detected"; fi
+
+      - name: Pre-open-source check
+        run: php tools/pre_open_source_check.php --release="$GITHUB_WORKSPACE"
