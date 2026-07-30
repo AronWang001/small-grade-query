@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <title><?= e($pageTitle) ?> - 成绩查询管理系统</title>
-    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/admin.css?v=<?= (int) filemtime(APP_ROOT . '/assets/admin.css') ?>">
     <?php if ($tab === 'system_settings' && $isSuperAdmin): ?><script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script><?php endif; ?>
     <script src="assets/admin.js?v=<?= (int) filemtime(APP_ROOT . '/assets/admin.js') ?>" defer></script>
@@ -71,9 +70,9 @@
             </button>
             <small>
                 GitHub开源：
-                <a href="https://github.com/AronWang001/grade-query-system"
+                <a href="https://github.com/AronWang001/small-grade-query"
                    target="_blank"
-                   rel="noopener noreferrer">AronWang001/grade-query-system</a>
+                   rel="noopener noreferrer">AronWang001/small-grade-query</a>
             </small>
         </div>
     </aside>

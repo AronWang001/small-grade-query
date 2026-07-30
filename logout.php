@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
     <footer class="footer">
         GitHub开源：
-        <a href="https://github.com/AronWang001/grade-query-system"
+        <a href="https://github.com/AronWang001/small-grade-query"
            target="_blank"
-           rel="noopener noreferrer">AronWang001/grade-query-system</a>
+           rel="noopener noreferrer">AronWang001/small-grade-query</a>
     </footer>
 </main>
 </body>

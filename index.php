@@ -128,7 +128,6 @@ $schemaJson = json_encode($schemas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLAS
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>成绩查询系统</title>
-    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/app.css?v=<?= (int) filemtime(__DIR__ . "/assets/app.css") ?>">
     <script src="assets/app.js?v=<?= (int) filemtime(__DIR__ . "/assets/app.js") ?>" defer></script>
 </head>
@@ -179,7 +178,7 @@ $schemaJson = json_encode($schemas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLAS
 
         <footer class="result-capture-footer">
             <div class="result-footer-line">生成时间：<?= e($generatedAt) ?></div>
-            <div class="result-footer-brand">GitHub: AronWang001/grade-query-system</div>
+            <div class="result-footer-brand">GitHub: AronWang001/small-grade-query</div>
         </footer>
     </section>
 
@@ -206,9 +205,9 @@ $schemaJson = json_encode($schemas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLAS
     <footer class="footer">
         <div>
             GitHub开源：
-            <a href="https://github.com/AronWang001/grade-query-system"
+            <a href="https://github.com/AronWang001/small-grade-query"
                target="_blank"
-               rel="noopener noreferrer">AronWang001/grade-query-system</a>
+               rel="noopener noreferrer">AronWang001/small-grade-query</a>
         </div>
     </footer>
 </main>
@@ -276,9 +275,9 @@ $schemaJson = json_encode($schemas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLAS
     <footer class="footer">
         <div>
             GitHub开源：
-            <a href="https://github.com/AronWang001/grade-query-system"
+            <a href="https://github.com/AronWang001/small-grade-query"
                target="_blank"
-               rel="noopener noreferrer">AronWang001/grade-query-system</a>
+               rel="noopener noreferrer">AronWang001/small-grade-query</a>
         </div>
     </footer>
 </main>

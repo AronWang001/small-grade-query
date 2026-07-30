@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <title><?= e($pageTitle) ?></title>
-    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/app.css?v=<?= (int) filemtime(APP_ROOT . '/assets/app.css') ?>">
     <?php if ($turnstile['enabled']): ?>
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
@@ -27,9 +26,9 @@
     </section>
     <footer class="footer">
         GitHub开源：
-        <a href="https://github.com/AronWang001/grade-query-system"
+        <a href="https://github.com/AronWang001/small-grade-query"
            target="_blank"
-           rel="noopener noreferrer">AronWang001/grade-query-system</a>
+           rel="noopener noreferrer">AronWang001/small-grade-query</a>
     </footer>
 </main>
 </body>
