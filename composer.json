@@ -1,7 +1,7 @@
 {
     "require": {
         "phpoffice/phpspreadsheet": "^5.8.1",
-        "phpmailer/phpmailer": "^7.1"
+        "phpmailer/phpmailer": "^7.2"
     },
     "name": "fastertech/grade-query",
     "description": "A secure grade query system for educational institutions",
