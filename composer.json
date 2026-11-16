@@ -1,6 +1,6 @@
 {
     "require": {
-        "phpoffice/phpspreadsheet": "^5.8.1",
+        "phpoffice/phpspreadsheet": "^5.11.0",
         "phpmailer/phpmailer": "^7.1"
     },
     "name": "fastertech/grade-query",
